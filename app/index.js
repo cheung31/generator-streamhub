@@ -59,9 +59,12 @@ StreamhubGenerator.prototype.app = function app() {
     function (err, remote) {
       console.log('Fetching ' + this._appSkeletonRepo.githubUsername + '/' + this._appSkeletonRepo.githubRepo + ' ...');
       remote.directory('./', './');
+
       cb(); // Done fetching
+
       remote.template('package.json', 'package.json', this);
       remote.template('bower.json', 'bower.json', this);
+      remote.template('requirejs.conf.js', 'requirejs.conf.js', this);
     }.bind(this),
     refreshCache
   );
